@@ -27,16 +27,20 @@
         </section>
         <section class="row mb-5 d-flex justify-content-evenly">
             <div class="col-md-6 card" style="width: 18rem;">
-                <img class="mt-3 card-img-top" src="/img/favorite.png" alt="...">
-                <div class="card-body">
-                    <p class="card-text text-center">즐겨찾기</p>
-                </div>
+                <a href="/manage_bus/favorites.php" class="text-decoration-none">
+                    <img class="mt-3 card-img-top" src="/img/favorite.png" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center">즐겨찾기</p>
+                    </div>
+                </a>
             </div>
             <div class="col-md-6 card" style="width: 18rem;">
-                <img class="mt-3 card-img-top" src="/img/bus-stop.png" alt="...">
-                <div class="card-body">
-                    <p class="card-text text-center">정류소</p>
-                </div>
+                <a href="/manage_bus/search_bus.php" class="text-decoration-none">
+                    <img class="mt-3 card-img-top" src="/img/bus-stop.png" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center">정류소</p>
+                    </div>
+                </a>
             </div>
         </section>
     </article>
