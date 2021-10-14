@@ -24,13 +24,14 @@ $response = json_decode(curl_exec($ch));
 // 세션 종료
 curl_close($ch);
 
-DB::query('TRUNCATE line'); // 테이블 비우기
+DB::query('TRUNCATE station'); // 테이블 비우기
 
 foreach ($response->STATION_LIST as $key => $value) {
     $sql = "INSERT INTO station 
-            VALUES(:id, :name, :e_name, :longitude, :latitude, :ars_id, :next_station)";
+            VALUES(:station_id, :busstop_id, :name, :e_name, :longitude, :latitude, :ars_id, :next_station)";
     DB::query($sql, array(
-        ':id'             => $value->BUSSTOP_ID,            // 정류소 번호(ID)
+        ':station_id'     => $value->STATION_NUM,           // 정류소 고유 ID
+        ':busstop_id'     => $value->BUSSTOP_ID,            // 정류소 번호
         ':name'           => trim($value->BUSSTOP_NAME),    // 정류소 이름
         ':e_name'         => trim($value->NAME_E),          // 정류소 영문 이름
         ':longitude'      => $value->LONGITUDE,             // 위도
