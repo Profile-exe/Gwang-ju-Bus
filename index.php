@@ -16,12 +16,12 @@
     <article class="my-5 row d-flex justify-content-center">
         <section class="row mb-5 d-flex justify-content-center">
             <header class="col-6">
-                <form class="mb-3 input-group form-floating d-flex justify-content-center" action="/manage_bus/search_bus.php">
+                <form class="input-group form-floating d-flex justify-content-center" action="/manage_bus/search_bus.php">
                     <div class="col-10 form-floating">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="노선 이름 입력">
                         <label for="floatingInput">노선 이름 입력</label>
                     </div>
-                    <button class="btn btn-outline-primary" type="button">검색</button>
+                    <button class="btn btn-outline-primary" type="submit">검색</button>
                 </form>
             </header>
         </section>
@@ -43,9 +43,10 @@
                 </a>
             </div>
         </section>
+        <button id="fetch_bus_info" class="col-5 mb-3 btn btn-secondary">버스 정보 업데이트</button>
     </article>
 </main>
-
+<script src="/js/fetch_bus_info.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
