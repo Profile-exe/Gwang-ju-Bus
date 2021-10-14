@@ -43,10 +43,17 @@
                 </a>
             </div>
         </section>
-        <button id="fetch_bus_info" class="col-5 mb-3 btn btn-secondary">버스 정보 업데이트</button>
+        <section class="row">
+            <div class="row d-flex justify-content-center">
+                <button id="fetch_bus_info" class="col-7 mb-3 btn btn-secondary">버스 정보 업데이트</button>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <button id="fetch_station_info" class="col-7 mb-3 btn btn-secondary">정류소 정보 업데이트</button>
+            </div>
+        </section>
     </article>
 </main>
-<script src="/js/fetch_bus_info.js"></script>
+<script src="/js/update_info.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
