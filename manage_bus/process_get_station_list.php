@@ -26,8 +26,8 @@ if ($result) {  // 정류장이 존재하는 경우 table-row로 생성
         $station_list .= "
             <tr style='cursor:pointer' onclick='location.href=\"/manage_bus/station_info.php?id={$row['station_id']}\"'>
                 <th class='col-1 text-center' scope='row'>{$row['station_id']}</th>
-                <td class='col-2 text-center'>{$row['station_name']}</td>
-                <td class='col-2 text-center'>{$row['station_e_name']}</td>
+                <td class='col-2 text-center station-name'>{$row['station_name']}</td>
+                <td class='col-2 text-center station-e-name'>{$row['station_e_name']}</td>
                 <td class='col-3 text-center'>{$row['next_station']}</td>
                 <td class='col-2 text-center'>{$row['station_ars_id']}</td>
             </tr>
