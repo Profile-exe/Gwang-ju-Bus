@@ -18,7 +18,7 @@ class Pagination {
         $prev_block,
         $prev_block_page,
         $page_nav = "",
-        $PHP_SELF = "/index.php";
+        $PHP_SELF = "/manage_bus/search_bus.php";
     //설정에서 register_globals=Off 인 경우에 $PHP_SELF 수퍼변수는 동작하지 않기때문에 경로를 지정해주는것이 좋다.
 
     //클래스 외부에서 필요한 변수
@@ -27,11 +27,11 @@ class Pagination {
         $page_set;
 
     //페이지 줄수, 블럭수 받아 데이터 정리
-    public function __construct($page_count, $block_count, $page_num, $is_my_board) {
+    public function __construct($page_count, $block_count, $page_num, $filter) {
         $block_set      = $block_count; // 한페이지 블럭수
         $this->page_set = $page_count;  // 한페이지 줄수
 
-        $result = DB::query("SELECT count(board_id) AS total FROM board {$is_my_board}")[0];
+        $result = DB::query("SELECT count(station_id) AS total FROM station {$filter}")[0];
         $total = $result['total']; // 전체글수
 
         $this->total_page  = ceil($total / $this->page_set);        // 총페이지수(올림함수)
