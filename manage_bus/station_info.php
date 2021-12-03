@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/classes/db.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/lib/delete_parameter.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes/arrive_information.php';
 
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -62,24 +63,48 @@ if ($is_integer) {  // 정수는 true 반환됨
 <div class="container my-3 d-flex justify-content-center">
     <div class="col-10">
         <header class="my-4">
-            <h1>헤더</h1>
+            <h1>버스 도착 정보</h1>
         </header>
         <article>
             <section class="borard_header">
                 <div class="board_id mb-3 d-flex justify-content-between align-items-baseline">
                     <span style="font-size:2em; color:gray;"># <?=$article['station_id']?> - <?=$article['station_name']?></span>
                 </div>
+                <div class="board_info d-flex justify-content-between align-items-center">
+                    <div>
+                        <span style="font-size: 1.3em; font-weight: bold;"><?=$article['next_station'].' 방면'?></span>
+                    </div>
+                    <div class="author_name">
+                        <span style="font-size: 1.3em; font-weight: bold;">ARS |</span>
+                        <span style="font-size: 1.3em;"><?=$article['station_ars_id']?></span>
+                    </div>
+                </div>
             </section>
             <hr>
             <section class="board_body mb-5">
                 <div class="board_content" style="font-size:1.2em; color:black;">
-                    버스 정보 입력
                 </div>
+                <table class="table table-hover">
+                    <thead class="table-light">
+                    <tr>
+                        <th class="col-1 text-center" scope="col">노선</th>
+                        <th class="col-2 text-center" scope="col">남은 시간</th>
+                        <th class="col-2 text-center" scope="col">남은 정류소</th>
+                        <th class="col-3 text-center" scope="col">버스 위치</th>
+                    </tr>
+                    </thead>
+                    <tbody id="station-list" >
+                        <?=arrive_info()?>
+                    </tbody>
+                </table>
             </section>
             <hr>
             <section class="board_footer">
-                <div>
-                    추가 정보 입력
+                <div class="d-flex justify-content-between">
+                    <div>
+                        추가 정보 입력
+                    </div>
+                    <a href="<?=$redirect?>" class="btn btn-outline-secondary">돌아가기</a>
                 </div>
             </section>
         </article>
