@@ -63,13 +63,10 @@ if ($is_integer) {  // 정수는 true 반환됨
 <div class="container my-3 d-flex justify-content-center">
     <div class="col-10">
         <header class="my-4">
-            <h1>버스 도착 정보</h1>
+            <span style="font-size:2.5em; color:gray;"># <?=$article['station_id']?> - <?=$article['station_name']?></span>
         </header>
         <article>
             <section class="borard_header">
-                <div class="board_id mb-3 d-flex justify-content-between align-items-baseline">
-                    <span style="font-size:2em; color:gray;"># <?=$article['station_id']?> - <?=$article['station_name']?></span>
-                </div>
                 <div class="board_info d-flex justify-content-between align-items-center">
                     <div>
                         <span style="font-size: 1.3em; font-weight: bold;"><?=$article['next_station'].' 방면'?></span>
