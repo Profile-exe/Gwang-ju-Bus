@@ -3,3 +3,14 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
+.table-fix-head thead th {
+    box-shadow: inset 0 -1px 0 #000000;
+    position: sticky;
+    top: 0;
+}
+
+.h {
+    height: 25vw;
+    overflow-y: scroll;
+}

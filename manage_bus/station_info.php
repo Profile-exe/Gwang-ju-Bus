@@ -78,10 +78,10 @@ if ($is_integer) {  // 정수는 true 반환됨
                 </div>
             </section>
             <hr>
-            <section class="board_body mb-5">
+            <section class="board_body mb-5 h">
                 <div class="board_content" style="font-size:1.2em; color:black;">
                 </div>
-                <table class="table table-hover">
+                <table class="table table-hover table-fix-head">
                     <thead class="table-light">
                     <tr>
                         <th class="col-1 text-center" scope="col">노선</th>
@@ -90,7 +90,7 @@ if ($is_integer) {  // 정수는 true 반환됨
                         <th class="col-3 text-center" scope="col">버스 위치</th>
                     </tr>
                     </thead>
-                    <tbody id="station-list" >
+                    <tbody id="bus-list">
                         <?=arrive_info()?>
                     </tbody>
                 </table>
@@ -104,10 +104,15 @@ if ($is_integer) {  // 정수는 true 반환됨
                     <a href="<?=$redirect?>" class="btn btn-outline-secondary">돌아가기</a>
                 </div>
             </section>
+            <footer class="mt-5">
+                <nav id="nav-pagination" class="position-absolute bottom-0 start-50 translate-middle">
+                    <ul id="page-list" class="pagination d-flex justify-content-center">
+                    </ul>
+                </nav>
+            </footer>
         </article>
     </div>
 </div>
-<!--Bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
