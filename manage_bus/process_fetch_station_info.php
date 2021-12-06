@@ -28,16 +28,16 @@ DB::query('TRUNCATE station'); // 테이블 비우기
 
 foreach ($response->STATION_LIST as $key => $value) {
     $sql = "INSERT INTO station 
-            VALUES(:station_id, :busstop_id, :name, :e_name, :longitude, :latitude, :ars_id, :next_station)";
+            VALUES(:station_id, :busstop_id, :name, :e_name, :next_station, :longitude, :latitude, :ars_id)";
     DB::query($sql, array(
         ':station_id'     => $value->STATION_NUM,           // 정류소 고유 ID
         ':busstop_id'     => $value->BUSSTOP_ID,            // 정류소 번호
         ':name'           => trim($value->BUSSTOP_NAME),    // 정류소 이름
         ':e_name'         => trim($value->NAME_E),          // 정류소 영문 이름
+        ':next_station'   => trim($value->NEXT_BUSSTOP),    // 정류소 방향
         ':longitude'      => $value->LONGITUDE,             // 위도
         ':latitude'       => $value->LATITUDE,              // 경도
-        ':ars_id'         => $value->ARS_ID,                // ARS 번호
-        ':next_station'   => trim($value->NEXT_BUSSTOP),    // 정류소 방향
+        ':ars_id'         => $value->ARS_ID                 // ARS 번호
     ));
 }
 
