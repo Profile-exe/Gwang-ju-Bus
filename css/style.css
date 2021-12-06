@@ -12,5 +12,5 @@
 
 .h {
     height: 25vw;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
