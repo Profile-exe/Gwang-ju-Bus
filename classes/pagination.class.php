@@ -31,7 +31,7 @@ class Pagination {
         $block_set      = $block_count; // 한페이지 블럭수
         $this->page_set = $page_count;  // 한페이지 줄수
 
-        $result = DB::query("SELECT count(station_id) AS total FROM station {$filter}")[0];
+        $result = DB::query("SELECT count(*) AS total FROM station {$filter}")[0];
         $total = $result['total']; // 전체글수
 
         $this->total_page  = ceil($total / $this->page_set);        // 총페이지수(올림함수)

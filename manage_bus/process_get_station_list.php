@@ -9,12 +9,13 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $post_data = json_decode(file_get_contents('php://input')); // JSON 형태로 받은 데이터 객체로 parsing
 
-$filter = $post_data->is_favorite ? "WHERE station.user_id = '{$_SESSION['user_id']}'\n" : '';
+$filter = $post_data->is_favorite ? "INNER JOIN favorite ON station.station_id = favorite.station_id WHERE favorite.user_id = '{$_SESSION['user_id']}'" : '';
 
 // 정류소 줄 수, 블럭 수
 $pagination = new Pagination($post_data->page_count, 5, $post_data->page_num, $filter);
 
-$sql = "SELECT * FROM station
+$sql = "SELECT station.station_id, station_name, station_e_name, next_station, station_ars_id 
+        FROM station {$filter} 
         ORDER BY station_id LIMIT {$pagination->limit_idx}, {$pagination->page_set}
 ";
 
