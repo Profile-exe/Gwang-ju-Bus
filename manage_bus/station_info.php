@@ -7,6 +7,34 @@ if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+$station_id = $_GET['id'];
+
+$favorite_btn = '<button class="btn btn-primary disabled">즐겨찾기</button>';
+$loginout = '<a id="loginout_btn" href="/manage_member/login.php" class="btn btn-secondary">로그인</a>';
+if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != '') {
+    $favorite_btn = '<button id="favorite_btn" class="btn btn-primary add-favorite">즐겨찾기 추가</button>';
+    $loginout = '<a id="loginout_btn" href="/manage_member/process_logout.php" class="btn btn-secondary">로그아웃</a>';
+
+    $result = null;
+    try {
+        $sql = "
+            SELECT EXISTS(SELECT * FROM favorite WHERE user_id = :user_id AND station_id = :station_id) AS success
+        ";
+
+        $result = DB::query($sql, array(
+            ':user_id'    => $_SESSION['user_id'],
+            ':station_id' => $station_id
+        ))[0]['success'];
+
+        settype($result, 'integer');
+        if ($result) {     // 해당 정류소가 이미 즐겨찾기 되어있음
+            $favorite_btn = '<button id="favorite_btn" class="btn btn-primary delete-favorite">즐겨찾기 삭제</button>';
+        }
+    } catch (Exception $e) {
+        exit(header('Location: /index.php?msg=Error_occurred_while_reading_favorite'));
+    }
+}
+
 // 메시지 전달 시 알림
 if (isset($_GET['msg'])) {
     echo '<script>alert("'.$_GET['msg'].'");</script>';
@@ -17,11 +45,9 @@ if (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != 'http://local
     $redirect = delete_parameter($_SERVER['HTTP_REFERER'], 'msg');
 }
 
-$station_id = $_GET['id'];
-$is_integer = settype($station_id, 'integer');
-
 $result = null;
 $article = null;
+$is_integer = settype($station_id, 'integer');
 if ($is_integer) {  // 정수는 true 반환됨
     try {
         $sql = "
@@ -39,10 +65,10 @@ if ($is_integer) {  // 정수는 true 반환됨
 
         $article = $result[0];
     } catch (Exception $e) {
-        exit(header('Location: /index.php?msg=Error_occurred_while_reading_board'));
+        exit(header('Location: /index.php?msg=Error_occurred_while_reading_station'));
     }
 } else {
-    exit(header('Location: /index.php?msg=Error_occurred_while_reading_board'));
+    exit(header('Location: /index.php?msg=Error_occurred_while_reading_station'));
 }
 ?>
 
@@ -62,8 +88,9 @@ if ($is_integer) {  // 정수는 true 반환됨
 <body>
 <div class="container my-3 d-flex justify-content-center">
     <div class="col-10">
-        <header class="my-4">
+        <header class="my-4 d-flex justify-content-between">
             <span style="font-size:2.5em; color:gray;"># <?=$article['station_id']?> - <?=$article['station_name']?></span>
+            <?=$favorite_btn?>
         </header>
         <article>
             <section class="borard_header">
@@ -98,9 +125,7 @@ if ($is_integer) {  // 정수는 true 반환됨
             <hr>
             <section class="board_footer">
                 <div class="d-flex justify-content-between">
-                    <div>
-                        추가 정보 입력
-                    </div>
+                    <?=$loginout?>
                     <a href="<?=$redirect?>" class="btn btn-outline-secondary">돌아가기</a>
                 </div>
             </section>
@@ -113,6 +138,7 @@ if ($is_integer) {  // 정수는 true 반환됨
         </article>
     </div>
 </div>
+<script src="/js/update_favorite.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
