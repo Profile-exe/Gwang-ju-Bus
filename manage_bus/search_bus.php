@@ -30,7 +30,10 @@ if (isset($_GET['msg'])) {
 <main class="container">
     <article class="my-5 row d-flex justify-content-center">
         <section class="row mb-5 d-flex justify-content-center">
-            <header class="col-7">
+            <header class="col-12 d-flex justify-content-between">
+                <div class="col-3 ms-4 text-center align-self-center">
+                    <span style="font-size:2em; color:gray;"># 정류소 검색</span>
+                </div>
                 <form class="input-group form-floating d-flex justify-content-center w-100" action="/manage_bus/search_bus.php">
                     <div id="input-line-num" class="form-floating w-75">
                         <input type="text" class="form-control" id="floatingInput" placeholder="노선 이름 입력">
