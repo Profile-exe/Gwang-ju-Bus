@@ -9,10 +9,10 @@ if(session_status() == PHP_SESSION_NONE) {
 
 $station_id = $_GET['id'];
 
-$favorite_btn = '<button class="btn btn-primary disabled">즐겨찾기</button>';
+$favorite_btn = '<button class="my-2 btn btn-primary disabled">즐겨찾기</button>';
 $loginout = '<a id="loginout_btn" href="/manage_member/login.php" class="btn btn-secondary">로그인</a>';
 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != '') {
-    $favorite_btn = '<button id="favorite_btn" class="btn btn-primary add-favorite">즐겨찾기 추가</button>';
+    $favorite_btn = '<button id="favorite_btn" class="my-2 btn btn-primary add-favorite">즐겨찾기 추가</button>';
     $loginout = '<a id="loginout_btn" href="/manage_member/process_logout.php" class="btn btn-secondary">로그아웃</a>';
 
     $result = null;
@@ -28,7 +28,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != '') {
 
         settype($result, 'integer');
         if ($result) {     // 해당 정류소가 이미 즐겨찾기 되어있음
-            $favorite_btn = '<button id="favorite_btn" class="btn btn-primary delete-favorite">즐겨찾기 삭제</button>';
+            $favorite_btn = '<button id="favorite_btn" class="my-2 btn btn-outline-primary delete-favorite">즐겨찾기 삭제</button>';
         }
     } catch (Exception $e) {
         exit(header('Location: /index.php?msg=Error_occurred_while_reading_favorite'));
@@ -40,10 +40,8 @@ if (isset($_GET['msg'])) {
     echo '<script>alert("'.$_GET['msg'].'");</script>';
 }
 
-$redirect = '/index.php';
-if (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != 'http://localhost/manage_member/register.php') {
-    $redirect = delete_parameter($_SERVER['HTTP_REFERER'], 'msg');
-}
+$page = intval(($station_id + 9) / 10);
+$redirect = "/manage_bus/search_bus.php?page={$page}";
 
 $result = null;
 $article = null;

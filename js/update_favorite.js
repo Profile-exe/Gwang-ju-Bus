@@ -22,8 +22,9 @@ document.getElementById('favorite_btn')?.addEventListener('click', (e) => {
             .then((res) => Boolean(res.text()))
             .then((is_updated) => {
                 if (is_updated) {
-                    alert('정상적으로 추가 되었습니다.');
                     btn.classList.remove('add-favorite');
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline-primary');
                     btn.classList.add('delete-favorite');
                     btn.innerText = '즐겨찾기 삭제';
                 } else {
@@ -35,8 +36,9 @@ document.getElementById('favorite_btn')?.addEventListener('click', (e) => {
             .then((res) => Boolean(res.text()))
             .then(is_updated => {
                 if (is_updated) {
-                    alert('정상적으로 삭제 되었습니다.');
                     btn.classList.remove('delete-favorite');
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-primary');
                     btn.classList.add('add-favorite');
                     btn.innerText = '즐겨찾기 추가';
                 } else {
