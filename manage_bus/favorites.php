@@ -36,7 +36,7 @@ if (isset($_GET['msg'])) {
         <section class="row mb-5 d-flex justify-content-center">
             <header class="col-12 d-flex justify-content-between">
                 <div class="col-3 ms-4 text-center align-self-center">
-                    <span style="font-size:2em; color:gray;"># 즐겨찾기</span>
+                    <span style="font-size:2em; color:black;">⭐ <span style="font-weight:bold;">즐겨찾기</span></span>
                 </div>
                 <form class="input-group form-floating d-flex justify-content-center w-100" action="/manage_bus/search_bus.php">
                     <div id="input-line-num" class="form-floating w-75">
