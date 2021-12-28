@@ -4,11 +4,12 @@ const urlParams = url.searchParams;
 let page = urlParams.get('page');
 if (page === null) page = '1';
 
-const body = {          // AJAX request body
+const body = {           // AJAX request body
     id: '',
-    page_count: 10,     // 한 페이지에 표시할 행의 수
-    page_num: page,     // 현재 페이지
-    is_favorite: true  // 필터링 on / off 유무
+    page_count: 10,      // 한 페이지에 표시할 행의 수
+    page_num: page,      // 현재 페이지
+    is_favorite: true,   // 필터링 on / off 유무
+    redirect_page: window.location.href.split('?')[0]
 }
 
 function get_station_list(body) { // AJAX 이용

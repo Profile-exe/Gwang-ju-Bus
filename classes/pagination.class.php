@@ -18,7 +18,7 @@ class Pagination {
         $prev_block,
         $prev_block_page,
         $page_nav = "",
-        $PHP_SELF = "/manage_bus/search_bus.php";
+        $PHP_SELF = "";
     //설정에서 register_globals=Off 인 경우에 $PHP_SELF 수퍼변수는 동작하지 않기때문에 경로를 지정해주는것이 좋다.
 
     //클래스 외부에서 필요한 변수
@@ -27,7 +27,9 @@ class Pagination {
         $page_set;
 
     //페이지 줄수, 블럭수 받아 데이터 정리
-    public function __construct($page_count, $block_count, $page_num, $filter) {
+    public function __construct($page_count, $block_count, $page_num, $filter, $list_page_url) {
+        $PHP_SELF = $list_page_url;
+
         $block_set      = $block_count; // 한페이지 블럭수
         $this->page_set = $page_count;  // 한페이지 줄수
 

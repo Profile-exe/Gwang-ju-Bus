@@ -12,7 +12,7 @@ $post_data = json_decode(file_get_contents('php://input')); // JSON 형태로 �
 $filter = $post_data->is_favorite ? "INNER JOIN favorite ON station.station_id = favorite.station_id WHERE favorite.user_id = '{$_SESSION['user_id']}'" : '';
 
 // 정류소 줄 수, 블럭 수
-$pagination = new Pagination($post_data->page_count, 5, $post_data->page_num, $filter);
+$pagination = new Pagination($post_data->page_count, 5, $post_data->page_num, $filter, $post_data->redirect_page);
 
 $sql = "SELECT station.station_id, station_name, station_e_name, next_station, station_ars_id 
         FROM station {$filter} 
